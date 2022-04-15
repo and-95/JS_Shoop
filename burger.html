@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+            <legend>Создай бургер!</legend>
+            <div class="row">
+                <p>Выбрать размер</p>
+                <div class="radio-variant">
+                    <input type="radio" name="size" value="small" checked/>
+                    <label for="small">Маленький</label>
+                </div>
+                <div class="radio-variant">
+                    <input type="radio" name="size" value="large" />
+                    <label for="large">Большой</label>
+                </div>
+            </div>
+            <div class="row">
+                <p>Выбрать начинку</p>
+                <div class="radio-variants">
+                    <input type="radio" name="filling" value="cheese" checked/>
+                    <label for="cheese">Сыр</label>
+                </div>
+                <div class="radio-variant">
+                    <input type="radio" name="filling" value="salad" />
+                    <label for="salad">Салат</label>
+                </div>
+                <div class="radio-variant">
+                    <input type="radio" name="filling" value="potato" />
+                    <label for="potato">Картошка</label>
+                </div>
+            </div>
+            <div class="row additions">
+                <p>Добавки</p>
+                <div class="checkbox-variant">
+                    <input type="checkbox" name="add"  value="seasoning"/>
+                    <label for="seasoning">Приправа</label>
+                </div>
+                <div class="checkbox-variant">
+                    <input type="checkbox" name="add" value="majo"/>
+                    <label for="majo">Майонез</label>
+                </div>
+            </div>
+            <div>
+                <button class="submit">Рассчитать</button>
+            </div>
+        <br />
+
+        <div class="result">
+        </div>
+
+    <script>
+
+class Hamburger {
+    constructor(){
+        this.size = document.querySelector('input[name="size"]:checked').value;
+        this.filling = document.querySelector('input[name="filling"]:checked').value;
+        this.additions = {};//объект для данных
+        this.price = 0;
+        this.calories = 0;
+
+        this.loadAdditions();
+        this.additionsAdd();
+        this.draw();
+    }
+
+    loadAdditions() { //загрузка данных
+        this.additions = {
+    	small: {
+    		price: 50,
+    		calories: 20
+    	},
+    	large: {
+    		price: 100,
+    		calories: 40
+    	},
+    	cheese: {
+    		price: 10,
+    		calories: 20
+    	},
+    	salad: {
+    		price: 20,
+    		calories: 5
+    	},
+    	potato: {
+    		price: 15,
+    		calories: 10
+    	},
+    	seasoning: {
+    		price: 15,
+    		calories: 0
+    	},
+    	majo: {
+    		price: 20,
+    		calories: 5
+    	}
+    }
+}
+
+burgerSize(){ //считаем данные от размера бургера
+    this.price += this.additions[this.size].price;
+    this.calories += this.additions[this.size].calories;
+}
+
+burgerFilling(){//считаем данные от начинки бургера
+    this.price += this.additions[this.filling].price;
+    this.calories += this.additions[this.filling].calories;
+}
+
+    additionsAdd(){//считаем данные от добавок бургера
+        const checkedBoxes = document.querySelectorAll('input[name=add]:checked');
+		for(let i = 0; i < checkedBoxes.length; i++){
+ 				const add = checkedBoxes[i].value;
+			  this.price += this.additions[add].price;   
+              this.calories += this.additions[add].calories;      
+    }
+    this.burgerSize();
+    this.burgerFilling();
+
+}
+
+draw() { //рисуем результат
+        document.querySelector('.result').innerHTML = `<div><b>Стоимость:</b> <span >${this.price}</span> Рублей</div>
+            <div><b>Калорийность:</b> <span >${this.calories}</span> кКал</div>`;
+    }
+}
+
+//запускаем работу класса
+document.querySelector('.submit').addEventListener('click',  event => {
+    new Hamburger();
+});
+    </script>
+</body>
+</html>
