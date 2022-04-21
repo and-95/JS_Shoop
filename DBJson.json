@@ -1,0 +1,21 @@
+[
+  {
+    "id_product": 100,
+    "product_name": "Крабстер",
+    "price": 450,
+    "img": "img/sushi/sushi1.png"
+    
+  },
+  {
+    "id_product": 101,
+    "product_name": "Набор Вкуснейший",
+    "price": 1000,
+    "img": "img/sushi/sushi2.png"
+  }.
+  {
+    "id_product": 102,
+    "product_name": "Филадельфия",
+    "price": 650,
+    "img": "img/sushi/sushi3.png"
+  }
+]
