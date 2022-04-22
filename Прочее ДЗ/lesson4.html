@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box text-before" style="border: 1px solid black; width: 450px; white-space: pre-line;">
+            Шаблон, который заменяет 'одинарные' кавычки на 'двойные'
+            Но не у aren't don't doesn't 
+            Шаблон, который заменяет 'одинарные' кавычки на 'двойные'
+            Но не у aren't don't doesn't 
+            Шаблон, который заменяет 'одинарные' кавычки на 'двойные'
+            Но не у aren't don't doesn't 
+            Шаблон, который заменяет 'одинарные' кавычки на 'двойные'
+            Но не у aren't don't doesn't 
+            Шаблон, который заменяет 'одинарные' кавычки на 'двойные'
+            Но не у aren't don't doesn't 
+    </div>
+        <br>
+        <button  onclick="changeText()"> Изменить </button>
+        <br>
+        <div class="text-after"></div>  
+    <script>
+
+const textBefore = document.querySelector('.text-before'); 
+const textAfter = document.querySelector('.text-after'); 
+
+const changeText = () => {
+    let str = textBefore.textContent;
+    console.log(str);
+
+    textAfter.innerText = str.replace(/^'|(\s)'|'(\s)|'$/g, '$1"$2');
+};
+    </script>
+</body>
+</html>
